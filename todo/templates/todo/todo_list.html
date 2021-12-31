@@ -21,6 +21,10 @@
             <td> {{ item.name }}</td>
             {% endif %}
         </tr>
+        {% empty %}
+        <tr>
+            <td>You Have Nothig To Do</td>
+        </tr>
         {% endfor %}
     </table>
 </body>
