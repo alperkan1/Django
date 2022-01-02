@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import item
+from .models import Item
 # Create your views here.
 
 
 def get_todo_list(request):
-    items = item.objects.all()
+    items = Item.objects.all()
     context = {
         'items': items
     }
@@ -15,7 +15,7 @@ def add_item(request):
     if request.method == 'POST':
         name = request.POST.get('item_name')
         done = 'done' in request.POST
-        item.obejects.create(name=name, done=done)
+        Item.objects.create(name=name, done=done)
 
         return redirect('get_todo_list')
     return render(request, 'todo/add_item.html')
