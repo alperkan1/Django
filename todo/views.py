@@ -27,6 +27,15 @@ def add_item(request):
 
 def edit_item(request, item_id):
     item = get_object_or_404(Item, id=item_id)
+    if request.method == 'POST':
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('get_todo_list')
+    form = ItemForm()
+    context = {
+            'form': form
+    }
     form = ItemForm(instance=item)
     context = {
             'form': form
